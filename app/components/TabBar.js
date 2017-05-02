@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  Text,
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,13 +19,19 @@ const TabBar = React.createClass({
   render() {
     return <View style={[styles.tabs, this.props.style, ]}>
       {this.props.tabs.map((tab, i) => {
-        return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
+        return <TouchableOpacity key={tab.icon} onPress={() => this.props.goToPage(i)} style={styles.tab}>
           <Icon
-            name={tab}
+            name={tab.icon}
             size={30}
             color={this.props.activeTab === i ? 'rgb(245, 160, 21)' : 'rgb(178,178,178)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
+          {this.props.activeTab === i ?
+            <Text style={styles.active}>{tab.text}</Text>
+            :
+            <Text>{tab.text}</Text>
+          }
+
         </TouchableOpacity>;
       })}
     </View>;
@@ -38,8 +45,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 10,
   },
+  active: {
+    fontWeight: 'bold',
+    color: 'rgb(245, 160, 21)',
+  },
   tabs: {
-    height: 45,
+    height: 60,
     flexDirection: 'row',
     backgroundColor: 'rgb(255,255,255)',
     paddingTop: 5,
