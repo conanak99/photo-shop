@@ -260,6 +260,13 @@
 			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
 			remoteInfo = RCTCameraRoll;
 		};
+		FF72EB431EBBD68900274B63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B04B71F379FE4988B9F532CD /* RNVectorIcons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A39873CE1EA65EE60051E01A;
+			remoteInfo = "RNVectorIcons-tvOS";
+		};
 		FF8507F31EBB8C3D001BF94F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7F8DD168CE94C7DB1B667A1 /* imageCropPicker.xcodeproj */;
@@ -597,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				FF1C4FDB1EB926A100F19FD3 /* libRNVectorIcons.a */,
+				FF72EB441EBBD68900274B63 /* libRNVectorIcons-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1003,6 +1011,13 @@
 			remoteRef = FF1C4FE01EB926B400F19FD3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		FF72EB441EBBD68900274B63 /* libRNVectorIcons-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNVectorIcons-tvOS.a";
+			remoteRef = FF72EB431EBBD68900274B63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		FF8507F41EBB8C3D001BF94F /* libimageCropPicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1241,6 +1256,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tdcd.photoshop;
 				PRODUCT_NAME = PhotoShop;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1266,6 +1282,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tdcd.photoshop;
 				PRODUCT_NAME = PhotoShop;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
