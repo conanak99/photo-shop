@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { mainColor, secondaryColor } from '../styles/commonStyle';
+
 const TabBar = React.createClass({
   tabIcons: [],
 
@@ -23,7 +25,7 @@ const TabBar = React.createClass({
           <Icon
             name={tab.icon}
             size={30}
-            color={this.props.activeTab === i ? 'rgb(245, 160, 21)' : 'rgb(178,178,178)'}
+            color={this.props.activeTab === i ? mainColor : secondaryColor}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
           {this.props.activeTab === i ?
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
   },
   active: {
     fontWeight: 'bold',
-    color: 'rgb(245, 160, 21)',
+    color: mainColor,
   },
   tabs: {
     height: 60,

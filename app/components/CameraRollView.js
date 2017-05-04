@@ -16,6 +16,8 @@ var {
 var groupByEveryN = require('groupByEveryN');
 var logError = require('logError');
 
+import styles from '../styles/commonStyle';
+
 var propTypes = {
   /**
    * The group where the photos will be fetched from. Possible
@@ -174,7 +176,7 @@ var CameraRollView = React.createClass({
         renderRow={this._renderRow}
         renderFooter={this._renderFooterSpinner}
         onEndReached={this._onEndReached}
-        style={styles.container}
+        style={styles.listView}
         dataSource={this.state.dataSource}
         enableEmptySections
       />
@@ -213,7 +215,7 @@ var CameraRollView = React.createClass({
     });
 
     return (
-      <View style={styles.row}>
+      <View style={styles.listViewRow}>
         {images}
       </View>
     );
@@ -243,18 +245,6 @@ var CameraRollView = React.createClass({
     if (!this.state.noMore) {
       this.fetch();
     }
-  },
-});
-
-var styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignSelf: 'stretch',
   },
 });
 

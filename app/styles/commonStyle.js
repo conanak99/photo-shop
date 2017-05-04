@@ -26,11 +26,23 @@ const styles = StyleSheet.create({
     margin: 5,
     marginTop: 10
   },
-  instructions: {
+  header: {
     textAlign: 'center',
-    color: '#333333',
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 30,
     marginBottom: 5,
   },
+  listView: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
+  listViewRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+  }
 });
 
 // Special style with EStyleSheet (Percent, pt, px, rem)
@@ -40,6 +52,10 @@ const additionalStyle = EStyleSheet.create({
     flex: 1,
     width: '25%',
     height: '14%',
+  },
+  product: {
+    width: '30%',
+    height: '20%',
   },
   banner: {
     width: '100%',
@@ -68,5 +84,8 @@ const additionalStyle = EStyleSheet.create({
     height: 80,
   }
 });
+
+export const mainColor = 'rgb(245, 160, 21)';
+export const secondaryColor= 'rgb(178,178,178)';
 
 export default {... styles, ...additionalStyle};

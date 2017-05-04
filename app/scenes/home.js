@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Text,
   View,
@@ -19,10 +20,6 @@ class Home extends Component {
     header: null,
   }
 
-  componentDidMount() {
-    //updatePosition(this.refs['SELECT1']);
-  }
-
   _renderImage = (asset) => {
     return (
       <TouchableOpacity
@@ -38,35 +35,28 @@ class Home extends Component {
   };
 
   async openCropper(uri) {
-    this.props.navigation.navigate('Result', {data: 1234});
-    /*
     let image = await ImagePicker.openCropper({
       path: uri,
       width: 600,
       height: 600,
       includeBase64: true,
     });
-    console.log(image);
-
-    // Store image to somewhere
-    // Go to result page
-    const base64 = image.data;
-    */
+    this.props.navigation.navigate('Result', {imageData: image.data});
   }
 
   async openCamera() {
-    const image = ImagePicker.openCamera({
-      width: 500,
-      height: 500,
+    const image = await ImagePicker.openCamera({
+      width: 600,
+      height: 600,
       cropping: true,
       includeBase64: true,
     });
-    console.log(image);
+    this.props.navigation.navigate('Result', {imageData: image.data});
   }
 
     render() {
       return <View style={styles.container}>
-        <TouchableOpacity onPress={this.openCamera}>
+        <TouchableOpacity onPress={this.openCamera.bind(this)}>
             <Image
               style={styles.banner}
               source={ require('./../image/camera.jpg') }
@@ -94,6 +84,10 @@ class Home extends Component {
       </View>;
     }
 }
+
+Home.propTypes = {
+  navigation: PropTypes.object,
+};
 
 const HomeWrap = StackNavigator({
   Home: { screen: Home },

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
-  Text,
   View,
   Image,
-  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 
-import styles from '../styles/commonStyle';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { TabNavigator } from 'react-navigation';
+import styles, { mainColor } from '../styles/commonStyle';
 import ProductRecognizer from '../libs/productRecognizer';
+import ProductList from '../components/ProductList';
 
-class Home extends Component {
+class Result extends Component {
   static navigationOptions = {
     title: 'Kết quả',
   }
@@ -26,8 +24,9 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    let products = await ProductRecognizer.mockProduct();
+    const { params } = this.props.navigation.state;
     //let products = await ProductRecognizer.mockProduct();
+    let products = await ProductRecognizer.recognizeImage(params.imageData);
     this.setState({ loading:false, products});
   }
 
@@ -39,10 +38,13 @@ class Home extends Component {
           source={ require('./../image/logo-sendo.jpg') }
         />
         <ActivityIndicator size="large"
-          color="rgb(245, 160, 21)"/>
+          color={mainColor}/>
       </View>;
 
-      let resultView = <Text>{JSON.stringify(this.state.products)}</Text>;
+      let resultView = <ProductList
+        products={this.state.products}
+        itemPerRow={2}
+      />;
 
       return <View style={styles.container}>
         {this.state.loading ? loadingView : resultView}
@@ -50,7 +52,8 @@ class Home extends Component {
     }
 }
 
+Result.propTypes = {
+  navigation: PropTypes.object,
+};
 
-
-
-export default Home;
+export default Result;
