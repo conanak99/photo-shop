@@ -27,9 +27,9 @@ const TabBar = React.createClass({
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
           {this.props.activeTab === i ?
-            <Text style={styles.active}>{tab.text}</Text>
+            <Text style={[styles.tabText, styles.active]}>{tab.text}</Text>
             :
-            <Text>{tab.text}</Text>
+            <Text style={styles.tabText}>{tab.text}</Text>
           }
 
         </TouchableOpacity>;
@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 10,
+  },
+  tabText: {
+    fontSize : 11,
   },
   active: {
     fontWeight: 'bold',

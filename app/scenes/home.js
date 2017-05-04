@@ -43,10 +43,11 @@ class Home extends Component {
                 size={50}
                 color={'rgb(255, 255, 255)'}
               />
+              <Text style={styles.bannerText}>Take Photo </Text>
             </View>
         </TouchableOpacity>
 
-        <Text style={styles.album}>All Images</Text>
+        <Text style={styles.album}>Take Photo or Select Image</Text>
 
         <View style={styles.marginContainer}>
           <CameraRollView

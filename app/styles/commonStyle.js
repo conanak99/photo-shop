@@ -52,6 +52,11 @@ const additionalStyle = EStyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bannerText: {
+    fontSize: 12,
+    marginTop: -8,
+    color: 'white',
   }
 });
 
