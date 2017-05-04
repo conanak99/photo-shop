@@ -9,11 +9,15 @@ import {
 import styles from '../styles/commonStyle';
 import CameraRollView from '../components/CameraRollView';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ImagePicker from 'react-native-image-crop-picker';
+
+import { StackNavigator } from 'react-navigation';
+import Result from './Result';
 
 class Home extends Component {
-  state = {
-    groupTypes: 'All'
-  };
+  static navigationOptions = {
+    header: null,
+  }
 
   componentDidMount() {
     //updatePosition(this.refs['SELECT1']);
@@ -21,7 +25,10 @@ class Home extends Component {
 
   _renderImage = (asset) => {
     return (
-      <TouchableOpacity style={{flex:1, marginBottom:10, alignItems: 'stretch'}} key={asset.node.image.filename}>
+      <TouchableOpacity
+        onPress={this.openCropper.bind(this, asset.node.image.uri)}
+        style={{flex:1, marginBottom:10, alignItems: 'stretch'}}
+        key={asset.node.image.filename}>
           <Image
             source={asset.node.image}
             style={styles.image}
@@ -30,9 +37,36 @@ class Home extends Component {
     );
   };
 
+  async openCropper(uri) {
+    this.props.navigation.navigate('Result', {data: 1234});
+    /*
+    let image = await ImagePicker.openCropper({
+      path: uri,
+      width: 600,
+      height: 600,
+      includeBase64: true,
+    });
+    console.log(image);
+
+    // Store image to somewhere
+    // Go to result page
+    const base64 = image.data;
+    */
+  }
+
+  async openCamera() {
+    const image = ImagePicker.openCamera({
+      width: 500,
+      height: 500,
+      cropping: true,
+      includeBase64: true,
+    });
+    console.log(image);
+  }
+
     render() {
       return <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.openCamera}>
             <Image
               style={styles.banner}
               source={ require('./../image/camera.jpg') }
@@ -53,7 +87,7 @@ class Home extends Component {
           <CameraRollView
             batchSize={20}
             imagesPerRow={3}
-            groupTypes={this.state.groupTypes}
+            groupTypes="All"
             renderImage={this._renderImage}
           />
         </View>
@@ -61,7 +95,13 @@ class Home extends Component {
     }
 }
 
+const HomeWrap = StackNavigator({
+  Home: { screen: Home },
+  Result: {screen: Result },
+},
+  { headerMode: 'screen' }
+);
 
 
 
-export default Home;
+export default HomeWrap;

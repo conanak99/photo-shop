@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     margin: 15,
+    marginRight: 0,
     marginTop: 5,
   },
   album: {
@@ -57,6 +58,14 @@ const additionalStyle = EStyleSheet.create({
     fontSize: 12,
     marginTop: -8,
     color: 'white',
+  },
+  loadingView: {
+    flex:1,
+    justifyContent: 'center',
+  },
+  loadingImage: {
+    width: 160,
+    height: 80,
   }
 });
 
